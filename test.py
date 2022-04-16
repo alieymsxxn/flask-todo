@@ -18,7 +18,7 @@ def create():
     response = requests.request('POST', url, data=payload)
     
     data = json.loads(response.text)
-    print('RAW:', data.get('message'))
+    print('ENCRYPTED:', data.get('message'))
     print('DECRYPTED:', decrypt(data=data.get('message'), depth=0))
 
 def update():
@@ -37,7 +37,7 @@ def update():
     response = requests.request('POST', url, data=payload)
 
     data = json.loads(response.text)
-    print('RAW:', data.get('message'))
+    print('ENCRYPTED:', data.get('message'))
     print('DECRYPTED:', decrypt(data=data.get('message'), depth=0))
 
 def read():
@@ -54,7 +54,7 @@ def read():
     response = requests.request('POST', url, data=payload)
 
     data = json.loads(response.text)
-    print('RAW:', data.get('message'))
+    print('ENCRYPTED:', data.get('message'))
     print('DECRYPTED:', decrypt(data=data.get('message'), depth=1))
 
 def delete():
@@ -72,7 +72,7 @@ def delete():
     response = requests.request('POST', url, data=payload)
 
     data = json.loads(response.text)
-    print('RAW:', data.get('message'))
+    print('ENCRYPTED:', data.get('message'))
     print('DECRYPTED:', decrypt(data=data.get('message'), depth=0))
     
 if __name__ ==  '__main__':
