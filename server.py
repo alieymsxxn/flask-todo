@@ -9,7 +9,6 @@ init_db()
 generate_key()
 
 @app.route('/create_task', methods=['POST'])    
-
 def create_task():
 
     username = request.form.get('username', None)

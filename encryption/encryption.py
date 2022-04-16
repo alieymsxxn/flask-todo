@@ -5,14 +5,23 @@ BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 key_url = os.path.join(BASE_DIR, 'key.key')
 
 def generate_key():
-    
+    '''
+    This function generates a key for encryption and decryption
+    '''
     key = Fernet.generate_key() 
 
     with open(key_url, 'wb') as key_file:
         pickle.dump(key, key_file)
 
 def encrypt(data, depth=0):
-    
+    '''
+    Encrypts the given parameter
+    Parameters:
+            data (str) or (dict): Data for encryption
+            depth (int): Decides the depth of encryption
+    Returns:
+            data (str): Encrypted data
+    '''
     if os.path.exists(key_url):
         with open(key_url, 'rb') as key_file:
             key = pickle.load(key_file)
@@ -32,7 +41,14 @@ def encrypt(data, depth=0):
     return data
 
 def decrypt(data, depth):
-    
+    '''
+    Decrypts the given parameter
+    Parameters:
+            data (str) or (dict): Data for decryption
+            depth (int): Decides the depth of encryption
+    Returns:
+            data (str): Decrypted data
+    '''
     if os.path.exists(key_url):
         with open(key_url, 'rb') as key_file:
             key = pickle.load(key_file)

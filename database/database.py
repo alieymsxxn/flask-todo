@@ -2,7 +2,15 @@ from database.schema import Session, ToDo, engine
 
 
 def mutate_task(task, content):
-    
+    '''
+    Modifies content of a task
+    Parameters:
+            task (str): An id of a task
+            content (str): Content to update with
+    Returns:
+            (bool): A boolean representing status
+            (str): A message 
+    '''
     if not task or not content: return False, 'Please provide task id and content to update'
 
     if not task.strip().isdigit(): return False, 'Invalid task id is provided'
@@ -16,7 +24,14 @@ def mutate_task(task, content):
     return True, 'Task has been updated'
 
 def remove_task(task):
-    
+    '''
+    Removes a task from the database
+    Parameters:
+            task (str): An id of a task
+    Returns:
+            (bool): A boolean representing status
+            (str): A message 
+    '''
     if not task: return False, 'Please provide task id to delete'
     if not task.strip().isdigit(): return False, 'Invalid task id is provided'
     session = Session(bind=engine)
@@ -28,6 +43,15 @@ def remove_task(task):
     return True, 'Task has been deleted'
 
 def add_task(content, user):
+    '''
+    Adds a task to the database
+    Parameters:
+            task (str): An id of a task
+            content (str): Content for the task to create
+    Returns:
+            (bool): A boolean representing status
+            (str): A message 
+    '''
     if not content: return False, 'Please provide content for task'
     try:
         session = Session(bind=engine)
@@ -39,6 +63,14 @@ def add_task(content, user):
         return False, e
 
 def get_tasks(user):
+    '''
+    Gets a task from the database
+    Parameters:
+            user (str): A User object to fetch records for
+    Returns:
+            (bool): A boolean representing status
+            (str): A message or (list): A list containing ToDo objects 
+    '''
     try:
         session = Session(bind=engine)
         tasks = session.query(ToDo).filter(ToDo.user==user.id)

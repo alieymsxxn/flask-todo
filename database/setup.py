@@ -2,6 +2,9 @@ from werkzeug.security import generate_password_hash
 from .schema import User, engine, Base, Session
 
 def init_db():
+    '''
+    This function is reponsible for setting up the database
+    '''
     Base.metadata.create_all(engine)
     session = Session(bind=engine)
     
