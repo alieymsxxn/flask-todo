@@ -1,9 +1,12 @@
 # HOW TO RUN
-> Get into the project directory.
-> Install the required dependencies using: pip install -r requirements.txt
+1. Open the terminal and get into the project directory.
+2. Install the required dependencies using the command below in the terminal.
+> pip install -r requirements.txt
 Note: It is preferable to have a separate python environment for the project.
-> Set the FLASK_RUN environment variable by going into the project directory and running this command in the terminal: export FLASK_RUN=server.py
-> Run the following command to start the server: flask run
+3. Set the FLASK_RUN environment variable by running this command in the terminal. 
+> export FLASK_RUN=server.py
+4. Run the following command to start the server. 
+> flask run
 
 # HOW TO DECRYPT
 > A demonstartion of implemented encryption and decryption is depicted in the test.py file.
