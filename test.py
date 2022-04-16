@@ -1,3 +1,4 @@
+from itsdangerous import exc
 import requests, json
 from encryption.encryption import decrypt
 
@@ -55,7 +56,9 @@ def read():
 
     data = json.loads(response.text)
     print('ENCRYPTED:', data.get('message'))
-    print('DECRYPTED:', decrypt(data=data.get('message'), depth=1))
+    if isinstance(data.get('message'), str): depth = 0
+    else: depth = 1
+    print('DECRYPTED:', decrypt(data=data.get('message'), depth=depth))
 
 def delete():
     '''
@@ -72,7 +75,7 @@ def delete():
     response = requests.request('POST', url, data=payload)
 
     data = json.loads(response.text)
-    print('ENCRYPTED:', data.get('message'))
+    print('ENCRYPTED:', data.get('message'))    
     print('DECRYPTED:', decrypt(data=data.get('message'), depth=0))
     
 if __name__ ==  '__main__':

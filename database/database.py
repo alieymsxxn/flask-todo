@@ -14,13 +14,15 @@ def mutate_task(task, content):
     if not task or not content: return False, 'Please provide task id and content to update'
 
     if not task.strip().isdigit(): return False, 'Invalid task id is provided'
-    if not content: return False, 'Please provide content for task'
     
     session = Session(bind=engine)
     task = session.query(ToDo).filter(ToDo.id==task).first()
+    
     if not task: return False, 'No task found against the task id' 
+    
     task.content = content
     session.commit()
+    
     return True, 'Task has been updated'
 
 def remove_task(task):
@@ -32,11 +34,14 @@ def remove_task(task):
             (bool): A boolean representing status
             (str): A message 
     '''
-    if not task: return False, 'Please provide task id to delete'
+    if not task: return False, 'Please provide task id'
     if not task.strip().isdigit(): return False, 'Invalid task id is provided'
+    
     session = Session(bind=engine)
     task = session.query(ToDo).filter(ToDo.id==task).first()
+    
     if not task: return False, 'No task found against the task id' 
+    
     session.delete(task)
     session.commit()
     
@@ -52,7 +57,9 @@ def add_task(content, user):
             (bool): A boolean representing status
             (str): A message 
     '''
+    
     if not content: return False, 'Please provide content for task'
+    
     try:
         session = Session(bind=engine)
         item = ToDo(user=user.id, content=content)
@@ -79,6 +86,6 @@ def get_tasks(user):
         if tasks:
             return True, tasks
         else:
-            return False, 'No associated tasks found'
+            return False, 'No tasks associated to user found'
     except Exception as e:
         return False, e

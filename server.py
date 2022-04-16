@@ -10,7 +10,9 @@ generate_key()
 
 @app.route('/create_task', methods=['POST'])    
 def create_task():
-
+    '''
+    This function handle create requests
+    '''
     username = request.form.get('username', None)
     password = request.form.get('password', None)
     
@@ -25,13 +27,15 @@ def create_task():
         if status: response_code = 201
         else: response_code = 500
     
-    message = encrypt(message) 
+    message = encrypt(data=message, depth=0) 
 
     return {'message' : message}, response_code
         
 @app.route('/update_task', methods=['POST'])
 def update_task():
-    
+    '''
+    This function handle update requests
+    '''
     username = request.form.get('username', None)
     password = request.form.get('password', None)
     
@@ -47,14 +51,16 @@ def update_task():
         if status: response_code = 200
         else: response_code = 400
     
-    message = encrypt(message)
+    message = encrypt(data=message, depth=0)
     
     return {'message' : message}, response_code
 
 
 @app.route('/delete_task', methods=['POST'])    
 def delete_task():
-    
+    '''
+    This function handle delete requests
+    '''
     username = request.form.get('username', None)
     password = request.form.get('password', None)
     
@@ -69,14 +75,16 @@ def delete_task():
         if status: response_code = 200
         else: response_code = 400
 
-    message = encrypt(message)
+    message = encrypt(data=message, depth=0)
     
     return {'message' : message}, response_code
 
 
 @app.route('/read_task', methods=['POST'])        
 def read_task():
-    
+    '''
+    This function handle read requests
+    '''
     username = request.form.get('username', None)
     password = request.form.get('password', None)
     
@@ -89,7 +97,10 @@ def read_task():
         if status: response_code = 200
         else: response_code = 200
     
-    message = encrypt(data=message, depth=1)
+    if isinstance(message, str): depth = 0
+    else: depth = 1
+    print("DEPTH", depth)
+    message = encrypt(data=message, depth=depth)
     
     return {'message' : message}, response_code
         
