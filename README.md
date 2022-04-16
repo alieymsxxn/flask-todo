@@ -9,5 +9,5 @@ Note: It is preferable to have a separate python environment for the project.
 > flask run
 
 # HOW TO DECRYPT
-> A demonstartion of implemented encryption and decryption is depicted in the test.py file.
-> It is assumed that the key.key file is accquired by both encrypting and decrypting parties.
+1. A demonstartion of implemented encryption and decryption is depicted in the test.py file.
+2. It is assumed that the key.key file is accquired by both encrypting and decrypting parties.
