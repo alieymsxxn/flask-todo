@@ -2,6 +2,7 @@
 1. Open the terminal and get into the project directory.
 2. Install the required dependencies using the command below in the terminal.
 > pip install -r requirements.txt
+
 Note: It is preferable to have a separate python environment for the project.
 3. Set the FLASK_RUN environment variable by running this command in the terminal. 
 > export FLASK_RUN=server.py
