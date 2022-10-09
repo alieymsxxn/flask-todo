@@ -4,6 +4,7 @@
 > pip install -r requirements.txt
 
 Note: It is preferable to have a separate python environment for the project.
+
 3. Set the FLASK_RUN environment variable by running this command in the terminal. 
 > export FLASK_RUN=server.py
 4. Run the following command to start the server. 
